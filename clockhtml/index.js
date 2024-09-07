@@ -33,7 +33,7 @@ var secondsList = [];
 /**
  * 分析，完成效果:
  * 1. 实现时钟排列
- * 
+ *
  * 步骤：
  * 1. 初始化，渲染dom
  * 2. 实现随着时间高亮
@@ -138,7 +138,7 @@ function runtime() {
     var minute = now.getMinutes();
     var seconds = now.getSeconds();
 
-    var timeArr = [0, month, day-1, week, hour, minute, seconds]
+    var timeArr = [0, month, day - 1, week, hour, minute, seconds]
 
     console.log(timeArr)
 
@@ -169,7 +169,7 @@ function addColor(timeArr) {
 
 
     for (var i = 1; i < timeArr.length; i++) {
-        
+
         var index = timeArr[i];
 
         // for (var j = 0; j < timeArr.length; j++) {

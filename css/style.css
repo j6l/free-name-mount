@@ -489,7 +489,7 @@ body {
 
 .header_href {
     display: flex;
-    z-index: 9;
+    float: left;
     flex-direction: row;
     padding: 20px 200px;
     background-color: #7fc8f990;

@@ -11,10 +11,33 @@
 </head>
 <body>
 
-<div class="header_href">
-    <div style="color: #ffffff;">子页面：</div>
-    <div><a class="head_a" href="./clockhtml/index.html">时钟</a></div>
+<div class="header_href" style="position: fixed; top: 0; left: 0; z-index: 1000; background-color: rgba(0, 0, 0, 0.5); padding: 10px;">
+    <div style="color: #ffffff; display: inline-block; margin-right: 10px;">子页面：</div>
+    <div id="subPageLinks"></div>
 </div>
+<script>
+    const subPages = [
+        { name: "时钟", url: "./clockhtml/index.html" },
+        // 可以在这里添加更多子页面
+        { name: "出师表", url: "./newpage/index.html" }
+    ];
+
+    const linkContainer = document.getElementById('subPageLinks');
+    subPages.forEach(page => {
+        const linkDiv = document.createElement('div');
+        linkDiv.style.display = 'inline-block';
+        // 增加右边距以添加间隔
+        linkDiv.style.marginRight = '15px'; 
+        const link = document.createElement('a');
+        link.className = 'head_a';
+        link.href = page.url;
+        link.style.color = '#ffffff';
+        link.style.textDecoration = 'none';
+        link.textContent = page.name;
+        linkDiv.appendChild(link);
+        linkContainer.appendChild(linkDiv);
+    });
+</script>
 <div class="glitters">
     <div class="glitter g1"></div>
     <div class="glitter g2"></div>

@@ -4,6 +4,7 @@ body {
     color: #333;
     margin: 0;
     padding: 0;
+    overflow: hidden; /* 去除页面滚动条 */
 }
 
 .header {
@@ -41,10 +42,10 @@ h1 {
 }
 
 .sidebar {
-    width: 250px;
+    width: 20vw;
     background-color: #fff;
     border-right: 1px solid #ddd;
-    overflow-y: auto;
+    overflow-y: auto; /* 数据过多时显示滚动条 */
 }
 
 #poem-list {
@@ -57,6 +58,9 @@ h1 {
     padding: 1rem;
     cursor: pointer;
     border-bottom: 1px solid #eee;
+    white-space: normal; /* 允许文本换行 */
+    word-wrap: break-word; /* 长单词或URL时强制换行 */
+    overflow-wrap: break-word; /* 现代浏览器的换行支持 */
 }
 
 #poem-list li:hover, #poem-list li.active {
@@ -64,7 +68,7 @@ h1 {
 }
 
 .main-content {
-    flex-grow: 1;
+    width: 80vw;
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -90,15 +94,31 @@ h1 {
 #poem-display {
     flex-grow: 1;
     background-color: #fff;
-    padding: 2rem;
+    padding: 2rem 0.5rem;
     border-radius: 5px;
     border: 1px solid #ddd;
     font-size: 1.2rem;
-    line-height: 2;
-    overflow-y: auto;
-    white-space: pre-wrap;
-    writing-mode: vertical-rl;
+    line-height: 1.5; /* 行间距缩小一半（从2改为1） */
+    overflow-y: auto; /* 内容过长时显示滚动条 */
+    /* white-space: pre-wrap; */
+    writing-mode: vertical-lr;
     text-orientation: mixed;
+}
+
+/* 诗词标题和作者间距缩小70% */
+#poem-display h2 {
+    margin: 2rem;
+    font-size: 1.5rem;
+}
+
+#poem-display h3 {
+    margin: 2rem 2rem 2rem 0;
+    font-size: 1.1rem;
+    color: #666;
+}
+
+#poem-display p {
+    margin: 2rem 0; /* 段落间距缩小一半 */
 }
 
 @media (max-width: 768px) {
@@ -112,9 +132,35 @@ h1 {
         height: 200px;
         border-right: none;
         border-bottom: 1px solid #ddd;
+        overflow-y: auto; /* 移动端保留滚动条 */
     }
 
     #poem-display {
         writing-mode: horizontal-tb;
+        overflow-y: auto; /* 移动端保留滚动条 */
+    }
+}
+
+/* 更好的浏览器兼容性设置 */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%; /* 防止iOS设备调整文字大小 */
+    -webkit-font-smoothing: antialiased; /* 字体抗锯齿 */
+    -moz-osx-font-smoothing: grayscale; /* macOS字体抗锯齿 */
+}
+
+/* 确保所有现代浏览器的一致性 */
+:focus {
+    outline: 2px solid #a56a2a;
+    outline-offset: 2px;
+}
+
+/* 改进触摸设备体验 */
+@media (hover: none) {
+    .btn:hover, .control-btn:hover {
+        background-color: inherit;
     }
 }

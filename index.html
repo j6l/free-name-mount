@@ -1,50 +1,112 @@
-﻿<!DOCTYPE html>
-<html lang="en" >
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<title>宇航员走进宇宙飞船-NameMount</title>
-<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-
-<link rel="stylesheet" href="css/style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NameMount - 创意展示平台</title>
+    <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
+    <header class="header">
+        <h1>NameMount</h1>
+        <p>创意展示与互动体验平台</p>
+    </header>
 
-<div class="glitters">
-	<div class="glitter g1"></div>
-	<div class="glitter g2"></div>
-	<div class="glitter g3"></div>
-	<div class="glitter g4"></div>
-	<div class="glitter g5"></div>
-	<div class="glitter g6"></div>
-	<div class="glitter g7"></div>
-	<div class="glitter g8"></div>
-</div>
+    <div class="container">
+        <div class="categories">
+            <div class="category-card">
+                <div class="category-header">
+                    <div class="category-icon">🚀</div>
+                    <div class="category-title">展示类</div>
+                </div>
+                <div class="category-description">
+                    精美的视觉展示和交互动画，带来沉浸式的用户体验
+                </div>
+                <ul class="items-list">
+                    <li class="item" onclick="navigateTo('astronaut.html')">
+                        <div class="item-title">宇航员走进飞船</div>
+                        <div class="item-description">3D动画展示宇航员进入宇宙飞船的精彩场景</div>
+                    </li>
+                </ul>
+            </div>
 
-<div class="wrapper">
-	<div class="container">
-		<div class="planet">
-		
-			<div class="spaceship">
-				<div class="body">
-					<div class="partial left"></div>
-					<div class="partial right"></div>
-					<div class="wing left"></div>
-					<div class="wing right"></div>
-					<div class="wing center"></div>
-				</div>
-			</div>
-			
-			<div class="crews"></div>
-			<div class="door back"><div class="entrance"></div></div>
-			<div class="bridge"></div>
-			
-		</div>
-	</div>
-</div>
+            <div class="category-card">
+                <div class="category-header">
+                    <div class="category-icon">🎮</div>
+                    <div class="category-title">互动类</div>
+                </div>
+                <div class="category-description">
+                    可交互的游戏和应用，提供丰富的用户参与体验
+                </div>
+                <ul class="items-list">
+                    <li class="item" onclick="navigateTo('fireworks.html')">
+                        <div class="item-title">烟花绽放</div>
+                        <div class="item-description">点击屏幕燃放绚丽烟花，享受视觉盛宴</div>
+                    </li>
+                </ul>
+            </div>
 
-<script type="text/javascript" src='js/scene.js'></script>
-<script type="text/javascript" src='js/shape.js'></script>
-<script type="text/javascript" src="js/script.js"></script>
+            <div class="category-card">
+                <div class="category-header">
+                    <div class="category-icon">🎨</div>
+                    <div class="category-title">艺术类</div>
+                </div>
+                <div class="category-description">
+                    创意艺术作品和视觉效果展示
+                </div>
+                <ul class="items-list">
+                    <li class="item" onclick="showComingSoon()">
+                        <div class="item-title">敬请期待</div>
+                        <div class="item-description">精美的艺术作品展示即将上线...</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="category-card">
+                <div class="category-header">
+                    <div class="category-icon">🔧</div>
+                    <div class="category-title">工具类</div>
+                </div>
+                <div class="category-description">
+                    实用的在线工具和应用程序
+                </div>
+                <ul class="items-list">
+                    <li class="item" onclick="showComingSoon()">
+                        <div class="item-title">敬请期待</div>
+                        <div class="item-description">实用工具正在筹备中...</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 NameMount. 探索无限创意可能</p>
+    </footer>
+
+    <script>
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+
+        function showComingSoon() {
+            alert('该功能正在开发中，敬请期待！');
+        }
+
+        // 添加一些交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const items = document.querySelectorAll('.item');
+            
+            items.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateX(5px) scale(1.02)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateX(0) scale(1)';
+                });
+            });
+        });
+    </script>
 </body>
 </html>

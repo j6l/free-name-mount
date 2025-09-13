@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>烟花绽放 - NameMount</title>
+    <link rel="stylesheet" href="css/fireworks.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="header">
+            <h1>🎆 烟花绽放</h1>
+            <div class="controls">
+                <button id="homeBtn" class="btn">🏠 返回首页</button>
+                <button id="clearBtn" class="btn">🧹 清空画面</button>
+                <button id="autoBtn" class="btn">✨ 自动模式</button>
+            </div>
+        </div>
+        
+        <div class="info-panel">
+            <div class="score">得分: <span id="score">0</span></div>
+            <div class="instruction">点击屏幕任意位置燃放烟花！</div>
+        </div>
+        
+        <canvas id="fireworksCanvas"></canvas>
+        
+        <div class="footer">
+            <p>💡 提示：连续点击可以创造更壮观的烟花秀！</p>
+        </div>
+    </div>
+    
+    <script src="js/fireworks.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2048游戏 - NameMount</title>
+    <link rel="stylesheet" href="css/2048.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="header">
+            <h1>🎮 2048游戏</h1>
+            <div class="controls">
+                <button id="homeBtn" class="btn">🏠 返回首页</button>
+                <button id="restartBtn" class="btn">🔄 重新开始</button>
+            </div>
+        </div>
+        
+        <div class="info-panel">
+            <div class="score">得分: <span id="score">0</span></div>
+            <div class="best-score">最高分: <span id="best-score">0</span></div>
+        </div>
+        
+        <div class="game-area">
+            <div class="grid-container">
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+            </div>
+            
+            <div class="tile-container"></div>
+        </div>
+        
+        <div class="instructions">
+            <p>使用 <strong>方向键</strong> 或 <strong>WASD</strong> 移动方块，将相同数字的方块合并，最终达到 <strong>2048</strong>！</p>
+        </div>
+        
+        <div class="game-message">
+            <p></p>
+            <div class="lower">
+                <button id="retry-button" class="btn">再试一次</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/2048.js"></script>
+</body>
+</html>

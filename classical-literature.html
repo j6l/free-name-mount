@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>古诗文鉴赏 - NameMount</title>
+    <link rel="stylesheet" href="css/classical-literature.css">
+</head>
+<body>
+    <div class="header">
+        <h1>📜 古诗文鉴賞</h1>
+        <button id="homeBtn" class="btn">🏠 返回首页</button>
+    </div>
+
+    <div class="content">
+        <div class="sidebar">
+            <ul id="poem-list">
+                <!-- Poems will be dynamically inserted here -->
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="controls">
+                <button id="prevBtn" class="control-btn">上一首</button>
+                <button id="nextBtn" class="control-btn">下一首</button>
+                <button id="biggerFontBtn" class="control-btn">A+</button>
+                <button id="smallerFontBtn" class="control-btn">A-</button>
+            </div>
+            <div id="poem-display">
+                <!-- Selected poem will be displayed here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/classical-literature.js"></script>
+    <script>
+        document.getElementById('homeBtn').addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

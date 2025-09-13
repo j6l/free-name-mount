@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>颜色选择器 - NameMount</title>
+    <link rel="stylesheet" href="css/color-picker.css">
+</head>
+<body>
+    <div class="header">
+        <h1>专业颜色选择器</h1>
+        <button id="homeBtn" class="btn">🏠 返回首页</button>
+    </div>
+    
+    <div class="container">
+        <!-- 主控制区 -->
+        <div class="main-controls">
+            <!-- 颜色选择区域 -->
+            <div class="color-picker-section">
+                <div class="color-display">
+                    <div class="current-color" id="currentColor"></div>
+                    <div class="color-values">
+                        <span id="colorHex">#FF6B6B</span>
+                        <span id="colorRgb">rgb(255, 107, 107)</span>
+                        <span id="colorHsl">hsl(0, 100%, 71%)</span>
+                    </div>
+                </div>
+                
+                <div class="color-canvas">
+                    <canvas id="hueCanvas" width="300" height="30"></canvas>
+                    <canvas id="colorCanvas" width="300" height="300"></canvas>
+                </div>
+            </div>
+            
+            <!-- 格式转换 -->
+            <div class="conversion-section">
+                <h3>颜色格式转换</h3>
+                <div class="format-inputs">
+                    <div class="input-group">
+                        <label>HEX</label>
+                        <input type="text" id="hexInput" value="#FF6B6B" placeholder="#RRGGBB">
+                    </div>
+                    <div class="input-group">
+                        <label>RGB</label>
+                        <input type="text" id="rgbInput" value="rgb(255, 107, 107)" placeholder="rgb(r, g, b)">
+                    </div>
+                    <div class="input-group">
+                        <label>HSL</label>
+                        <input type="text" id="hslInput" value="hsl(0, 100%, 71%)" placeholder="hsl(h, s%, l%)">
+                    </div>
+                    <div class="input-group">
+                        <label>CMYK</label>
+                        <input type="text" id="cmykInput" value="cmyk(0%, 58%, 58%, 0%)" placeholder="cmyk(c%, m%, y%, k%)">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 侧边控制面板 -->
+        <div class="side-panel">
+            <!-- 调色板管理 -->
+            <div class="panel-section">
+                <h3>调色板</h3>
+                <div class="palette-controls">
+                    <button id="saveColor" class="panel-btn">💾 保存颜色</button>
+                    <button id="clearPalette" class="panel-btn">🗑️ 清空调色板</button>
+                </div>
+                <div class="color-palette" id="colorPalette">
+                    <!-- 保存的颜色将在这里显示 -->
+                </div>
+            </div>
+            
+            <!-- 预设方案 -->
+            <div class="panel-section">
+                <h3>预设方案</h3>
+                <div class="preset-schemes">
+                    <div class="scheme" data-scheme="material">
+                        <div class="scheme-colors">
+                            <div style="background:#FF6B6B"></div>
+                            <div style="background:#4ECDC4"></div>
+                            <div style="background:#45B7D1"></div>
+                            <div style="background:#F9CA24"></div>
+                        </div>
+                        <span>Material Design</span>
+                    </div>
+                    <div class="scheme" data-scheme="pastel">
+                        <div class="scheme-colors">
+                            <div style="background:#FFD3B6"></div>
+                            <div style="background:#FFAAA5"></div>
+                            <div style="background:#FF8B94"></div>
+                            <div style="background:#DCEDC1"></div>
+                        </div>
+                        <span>柔和色调</span>
+                    </div>
+                    <div class="scheme" data-scheme="mono">
+                        <div class="scheme-colors">
+                            <div style="background:#2D3436"></div>
+                            <div style="background:#636E72"></div>
+                            <div style="background:#B2BEC3"></div>
+                            <div style="background:#DFE6E9"></div>
+                        </div>
+                        <span>单色方案</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 实用工具 -->
+            <div class="panel-section">
+                <h3>实用工具</h3>
+                <div class="utility-tools">
+                    <button id="contrastCheck" class="panel-btn">🔍 对比度检查</button>
+                    <button id="colorBlind" class="panel-btn">👁️ 色盲模拟</button>
+                    <button id="gradientGen" class="panel-btn">🌈 渐变生成</button>
+                    <button id="exportPalette" class="panel-btn">📤 导出调色板</button>
+                </div>
+            </div>
+            
+            <!-- 对比度检查结果 -->
+            <div class="panel-section contrast-result" id="contrastResult" style="display: none;">
+                <h3>对比度检查</h3>
+                <div class="contrast-sample">
+                    <div class="text-sample" id="textSample">
+                        Aa
+                    </div>
+                </div>
+                <div class="contrast-value">
+                    <span>对比度: </span>
+                    <strong id="contrastValue">4.5:1</strong>
+                </div>
+                <div class="contrast-rating" id="contrastRating">
+                    ✅ 符合 WCAG AA 标准
+                </div>
+            </div>
+            
+            <!-- 色盲模拟结果 -->
+            <div class="panel-section colorblind-result" id="colorblindResult" style="display: none;">
+                <h3>色盲模拟</h3>
+                <div class="colorblind-types">
+                    <div class="cb-type">
+                        <div class="cb-sample" id="normalSample"></div>
+                        <span>正常视觉</span>
+                    </div>
+                    <div class="cb-type">
+                        <div class="cb-sample" id="protanSample"></div>
+                        <span>红色盲</span>
+                    </div>
+                    <div class="cb-type">
+                        <div class="cb-sample" id="deutanSample"></div>
+                        <span>绿色盲</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 返回首页功能
+        document.getElementById('homeBtn').addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+    </script>
+    <script src="js/color-picker.js"></script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown编辑器 - NameMount</title>
+    <link rel="stylesheet" href="css/markdown-editor.css">
+    <!-- Marked.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- 代码高亮 -->
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/lib/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/github-dark.min.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Markdown编辑器</h1>
+        <div class="header-controls">
+            <button id="homeBtn" class="btn">🏠 返回首页</button>
+            <button id="newFile" class="btn">📄 新建</button>
+        </div>
+    </div>
+    
+    <div class="container">
+        <!-- 工具栏 -->
+        <div class="toolbar">
+            <div class="toolbar-group">
+                <button class="tool-btn" data-action="bold" title="粗体">𝐁</button>
+                <button class="tool-btn" data-action="italic" title="斜体">𝐼</button>
+                <button class="tool-btn" data-action="heading1" title="一级标题">H1</button>
+                <button class="tool-btn" data-action="heading2" title="二级标题">H2</button>
+            </div>
+            
+            <div class="toolbar-group">
+                <button class="tool-btn" data-action="link" title="链接">🔗</button>
+                <button class="tool-btn" data-action="image" title="图片">🖼️</button>
+                <button class="tool-btn" data-action="code" title="代码块">{"<>"}</button>
+                <button class="tool-btn" data-action="quote" title="引用">❝</button>
+            </div>
+            
+            <div class="toolbar-group">
+                <button class="tool-btn" data-action="listUl" title="无序列表">•</button>
+                <button class="tool-btn" data-action="listOl" title="有序列表">1.</button>
+                <button class="tool-btn" data-action="table" title="表格">⊞</button>
+                <button class="tool-btn" data-action="hr" title="分隔线">―</button>
+            </div>
+            
+            <div class="toolbar-group">
+                <button class="tool-btn" data-action="undo" title="撤销">↶</button>
+                <button class="tool-btn" data-action="redo" title="重做">↷</button>
+                <button class="tool-btn" data-action="preview" title="切换预览">👁️</button>
+                <button class="tool-btn" data-action="fullscreen" title="全屏">⛶</button>
+            </div>
+        </div>
+        
+        <!-- 编辑区域 -->
+        <div class="editor-container">
+            <!-- 编辑面板 -->
+            <div class="editor-panel" id="editorPanel">
+                <div class="panel-header">
+                    <span>编辑</span>
+                    <div class="panel-controls">
+                        <button class="panel-btn" data-action="clear">🗑️</button>
+                        <button class="panel-btn" data-action="format">✨</button>
+                    </div>
+                </div>
+                <textarea id="markdownInput" placeholder="开始编写您的Markdown内容..."></textarea>
+            </div>
+            
+            <!-- 预览面板 -->
+            <div class="preview-panel" id="previewPanel">
+                <div class="panel-header">
+                    <span>预览</span>
+                    <div class="panel-controls">
+                        <button class="panel-btn" data-action="refresh">🔄</button>
+                        <button class="panel-btn" data-action="theme">🌙</button>
+                    </div>
+                </div>
+                <div id="previewOutput" class="preview-content"></div>
+            </div>
+        </div>
+        
+        <!-- 状态栏 -->
+        <div class="status-bar">
+            <div class="status-item">
+                <span>字数: </span>
+                <strong id="wordCount">0</strong>
+            </div>
+            <div class="status-item">
+                <span>行数: </span>
+                <strong id="lineCount">1</strong>
+            </div>
+            <div class="status-item">
+                <span>编码: </span>
+                <strong>UTF-8</strong>
+            </div>
+            <div class="status-item">
+                <span>语法: </span>
+                <strong>Markdown</strong>
+            </div>
+            <div class="status-item">
+                <span>自动保存: </span>
+                <strong id="autoSaveStatus">开启</strong>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 文件操作模态框 -->
+    <div class="modal" id="fileModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>文件操作</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="file-actions">
+                    <button class="modal-btn" data-action="openFile">📂 打开文件</button>
+                    <button class="modal-btn" data-action="saveFile">💾 保存文件</button>
+                    <button class="modal-btn" data-action="exportHtml">📄 导出HTML</button>
+                    <button class="modal-btn" data-action="exportPdf">📋 导出PDF</button>
+                </div>
+                
+                <div class="recent-files" id="recentFiles">
+                    <h4>最近文件</h4>
+                    <div class="file-list">
+                        <!-- 最近文件列表 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 设置模态框 -->
+    <div class="modal" id="settingsModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>编辑器设置</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <label>
+                        <input type="checkbox" id="autoSave" checked>
+                        自动保存
+                    </label>
+                </div>
+                <div class="setting-group">
+                    <label>
+                        <input type="checkbox" id="lineNumbers" checked>
+                        显示行号
+                    </label>
+                </div>
+                <div class="setting-group">
+                    <label>
+                        <input type="checkbox" id="syntaxHighlight" checked>
+                        语法高亮
+                    </label>
+                </div>
+                <div class="setting-group">
+                    <label>
+                        <input type="checkbox" id="livePreview" checked>
+                        实时预览
+                    </label>
+                </div>
+                <div class="setting-group">
+                    <label>主题:</label>
+                    <select id="themeSelect">
+                        <option value="light">浅色主题</option>
+                        <option value="dark">深色主题</option>
+                        <option value="auto">自动</option>
+                    </select>
+                </div>
+                <div class="setting-group">
+                    <label>字体大小:</label>
+                    <input type="range" id="fontSize" min="12" max="24" value="16">
+                    <span id="fontSizeValue">16px</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" id="saveSettings">保存设置</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 返回首页功能
+        document.getElementById('homeBtn').addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+    </script>
+    <script src="js/markdown-editor.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多功能工具箱 - NameMount</title>
+    <link rel="stylesheet" href="css/multi-tools.css">
+</head>
+<body>
+    <div class="header">
+        <h1>🔧 多功能工具箱</h1>
+        <button id="homeBtn" class="btn">🏠 返回首页</button>
+    </div>
+    
+    <div class="container">
+        <!-- 选项卡导航 -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="json">JSON格式化</button>
+            <button class="tab-btn" data-tab="password">随机密码</button>
+        </div>
+
+        <!-- 内容区域 -->
+        <div class="tab-content">
+
+            <!-- JSON格式化 -->
+            <div id="json" class="tab-pane active">
+                <div class="tool-section">
+                    <h3>JSON格式化工具</h3>
+                    <div class="input-group">
+                        <label for="json-input">输入JSON：</label>
+                        <textarea id="json-input" placeholder='{"name": "value", "array": [1, 2, 3]}' rows="8"></textarea>
+                    </div>
+                    <div class="button-group">
+                        <button id="format-json" class="btn primary">格式化</button>
+                        <button id="minify-json" class="btn secondary">压缩</button>
+                        <button id="validate-json" class="btn secondary">验证</button>
+                    </div>
+                    <div class="result-container">
+                        <div class="json-result-wrapper">
+                            <pre id="json-result"></pre>
+                            <button id="copy-json-result" class="btn secondary copy-btn" style="display: none;">复制结果</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 随机密码 -->
+            <div id="password" class="tab-pane">
+                <div class="tool-section">
+                    <h3>随机密码生成器</h3>
+                    <div class="input-group">
+                        <label for="password-length">密码长度：</label>
+                        <input type="range" id="password-length" min="8" max="32" value="16">
+                        <span id="password-length-value">16</span>
+                    </div>
+                    <div class="input-group">
+                        <label for="password-count">生成数量：</label>
+                        <input type="number" id="password-count" min="1" max="20" value="5">
+                    </div>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" id="uppercase" checked> 大写字母
+                        </label>
+                        <label>
+                            <input type="checkbox" id="lowercase" checked> 小写字母
+                        </label>
+                        <label>
+                            <input type="checkbox" id="numbers" checked> 数字
+                        </label>
+                        <label>
+                            <input type="checkbox" id="symbols"> 特殊符号
+                        </label>
+                    </div>
+                    <div class="input-group">
+                        <label for="exclude-chars">排除字符（可选）：</label>
+                        <input type="text" id="exclude-chars" value="oO0l1iI" placeholder="例如：oO0l1iI">
+                    </div>
+                    <button id="generate-password" class="btn primary">生成密码</button>
+                    <div class="result-container">
+                        <div id="password-results"></div>
+                        <button id="copy-all-passwords" class="btn secondary">复制全部</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 返回首页功能
+        document.getElementById('homeBtn').addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+    </script>
+    <script src="js/multi-tools.js"></script>
+</body>
+</html>

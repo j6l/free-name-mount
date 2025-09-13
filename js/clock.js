@@ -1,7 +1,6 @@
 // 利用时间对象获得 当前 时间
 // var now = new Date();
 
-
 var yearText = ['']
 var monthText = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
 var dayText = ["一号", "二号", "三号", "四号", "五号", "六号", "七号", "八号", "九号", "十号", "十一号", "十二号", "十三号", "十四号", "十五号", "十六号", "十七号", "十八号", "十九号", "二十号", "二十一号", "二十二号", "二十三号", "二十四号", "二十五号", "二十六号", "二十七号", "二十八号", "二十九号", "三十号", "三十一号"];
@@ -50,7 +49,6 @@ var textList = [
     [secondsText, secondsList],
 
 ]
-
 
 window.onload = function () {
     init();
@@ -112,9 +110,6 @@ function init() {
 
     }
 
-
-    console.log(textList);
-
 }
 
 // 创建标签并将文字填充标签内 接收参数为文字内容  
@@ -140,8 +135,6 @@ function runtime() {
 
     var timeArr = [0, month, day - 1, week, hour, minute, seconds]
 
-    console.log(timeArr)
-
     clearColor();
 
     rotateTransition(timeArr);
@@ -153,34 +146,9 @@ function runtime() {
 // 为时间添加样式
 function addColor(timeArr) {
 
-    // var label = document.querySelectorAll('.label')
-
-    // for (var i in timeArr) {
-
-    //     var len = i > 1 ? textList[i - 1][0].length : 0;
-    //     var num = timeArr[i];
-
-    //     var index = len + num;
-
-    //     label[index].classList.add('now')
-
-    //     // console.log(label[index])
-    // }
-
-
     for (var i = 1; i < timeArr.length; i++) {
 
         var index = timeArr[i];
-
-        // for (var j = 0; j < timeArr.length; j++) {
-
-        //     var temp = textList[i][1][j];
-        //     // var deg = 360 / textList[i][0].length * j;
-        //     var deg = 360 / textList[i][0].length * (j - timeArr[i]);
-        //     temp.style.transform = temp.style.transform.replace(/-?\d+deg/, deg + 'deg');
-
-        //     // console.log(temp)
-        // }
 
         textList[i][1][index].classList.add('now')
 

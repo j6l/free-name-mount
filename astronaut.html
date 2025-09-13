@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宇航员走进飞船 - NameMount</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>🚀 宇航员走进飞船</h1>
+        <button id="homeBtn" class="btn">🏠 返回首页</button>
+    </div>
+    
+    <div class="content">
+        <div class="glitters">
+            <div class="glitter g1"></div>
+            <div class="glitter g2"></div>
+            <div class="glitter g3"></div>
+            <div class="glitter g4"></div>
+            <div class="glitter g5"></div>
+            <div class="glitter g6"></div>
+            <div class="glitter g7"></div>
+            <div class="glitter g8"></div>
+        </div>
+
+        <div class="wrapper">
+            <div class="container">
+                <div class="planet">
+                
+                    <div class="spaceship">
+                        <div class="body">
+                            <div class="partial left"></div>
+                            <div class="partial right"></div>
+                            <div class="wing left"></div>
+                            <div class="wing right"></div>
+                            <div class="wing center"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="crews"></div>
+                    <div class="door back"><div class="entrance"></div></div>
+                    <div class="bridge"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>观看宇航员走进宇宙飞船的精彩动画！</p>
+    </div>
+
+    <script>
+        // 返回首页功能
+        document.getElementById('homeBtn').addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+    </script>
+    <script src="js/scene.js"></script>
+    <script src="js/shape.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

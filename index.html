@@ -1,80 +1,124 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>宇航员走进宇宙飞船-NameMount</title>
-    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
-          name="viewport">
-
-    <link href="./css/style.css" rel="stylesheet">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NameMount - 创意展示平台</title>
+    <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
+    <header class="header">
+        <h1>NameMount</h1>
+        <p>创意展示与互动体验平台</p>
+    </header>
 
-<div class="header_href" style="position: fixed; top: 0; left: 0; z-index: 1000; background-color: rgba(0, 0, 0, 0.5); padding: 10px;">
-    <div style="color: #ffffff; display: inline-block; margin-right: 10px;">子页面：</div>
-    <div id="subPageLinks"></div>
-</div>
-<script>
-    const subPages = [
-        { name: "时钟", url: "./clockhtml/index.html" },
-        // 可以在这里添加更多子页面
-        { name: "出师表", url: "./newpage/index.html" }
-    ];
-
-    const linkContainer = document.getElementById('subPageLinks');
-    subPages.forEach(page => {
-        const linkDiv = document.createElement('div');
-        linkDiv.style.display = 'inline-block';
-        // 增加右边距以添加间隔
-        linkDiv.style.marginRight = '15px'; 
-        const link = document.createElement('a');
-        link.className = 'head_a';
-        link.href = page.url;
-        link.style.color = '#ffffff';
-        link.style.textDecoration = 'none';
-        link.textContent = page.name;
-        linkDiv.appendChild(link);
-        linkContainer.appendChild(linkDiv);
-    });
-</script>
-<div class="glitters">
-    <div class="glitter g1"></div>
-    <div class="glitter g2"></div>
-    <div class="glitter g3"></div>
-    <div class="glitter g4"></div>
-    <div class="glitter g5"></div>
-    <div class="glitter g6"></div>
-    <div class="glitter g7"></div>
-    <div class="glitter g8"></div>
-</div>
-
-<div class="wrapper">
     <div class="container">
-        <div class="planet">
-
-            <div class="spaceship">
-                <div class="body">
-                    <div class="partial left"></div>
-                    <div class="partial right"></div>
-                    <div class="wing left"></div>
-                    <div class="wing right"></div>
-                    <div class="wing center"></div>
+        <div class="categories">
+            <div class="category-card">
+                <div class="category-header">
+                    <div class="category-icon">🚀</div>
+                    <div class="category-title">展示类</div>
                 </div>
+                <div class="category-description">
+                    精美的视觉展示和交互动画，带来沉浸式的用户体验
+                </div>
+                <ul class="items-list">
+                    <li class="item" onclick="navigateTo('astronaut.html')">
+                        <div class="item-title">宇航员走进飞船</div>
+                        <div class="item-description">3D动画展示宇航员进入宇宙飞船的精彩场景</div>
+                    </li>
+                    <li class="item" onclick="navigateTo('clock.html')">
+                        <div class="item-title">动态时钟展示</div>
+                        <div class="item-description">创意时间展示，以独特方式呈现当前时间</div>
+                    </li>
+                </ul>
             </div>
 
-            <div class="crews"></div>
-            <div class="door back">
-                <div class="entrance"></div>
+            <div class="category-card">
+                <div class="category-header">
+                    <div class="category-icon">🎮</div>
+                    <div class="category-title">互动类</div>
+                </div>
+                <div class="category-description">
+                    可交互的游戏和应用，提供丰富的用户参与体验
+                </div>
+                <ul class="items-list">
+                    <li class="item" onclick="navigateTo('fireworks.html')">
+                        <div class="item-title">烟花绽放</div>
+                        <div class="item-description">点击屏幕燃放绚丽烟花，享受视觉盛宴</div>
+                    </li>
+                    <li class="item" onclick="navigateTo('2048.html')">
+                        <div class="item-title">2048游戏</div>
+                        <div class="item-description">经典数字合并游戏，挑战你的逻辑思维</div>
+                    </li>
+                </ul>
             </div>
-            <div class="bridge"></div>
 
+            <div class="category-card">
+                <div class="category-header">
+                    <div class="category-icon">🎨</div>
+                    <div class="category-title">艺术类</div>
+                </div>
+                <div class="category-description">
+                    创意艺术作品和视觉效果展示
+                </div>
+                <ul class="items-list">
+                    <li class="item" onclick="navigateTo('classical-literature.html')">
+                        <div class="item-title">古诗文鉴赏</div>
+                        <div class="item-description">品读经典诗词文章，领略传统文化魅力</div>
+                    </li>
+                    <li class="item" onclick="showComingSoon()">
+                        <div class="item-title">敬请期待</div>
+                        <div class="item-description">精美的艺术作品展示即将上线...</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="category-card">
+                <div class="category-header">
+                    <div class="category-icon">🔧</div>
+                    <div class="category-title">工具类</div>
+                </div>
+                <div class="category-description">
+                    实用的在线工具和应用程序
+                </div>
+                <ul class="items-list">
+                    <li class="item" onclick="showComingSoon()">
+                        <div class="item-title">敬请期待</div>
+                        <div class="item-description">实用工具正在筹备中...</div>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
 
-<script src='./js/scene.js' type="text/javascript"></script>
-<script src='./js/shape.js' type="text/javascript"></script>
-<script src="./js/script.js" type="text/javascript"></script>
+    <footer class="footer">
+        <p>&copy; 2024 NameMount. 探索无限创意可能</p>
+    </footer>
+
+    <script>
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+
+        function showComingSoon() {
+            alert('该功能正在开发中，敬请期待！');
+        }
+
+        // 添加一些交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const items = document.querySelectorAll('.item');
+            
+            items.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateX(5px) scale(1.02)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateX(0) scale(1)';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
